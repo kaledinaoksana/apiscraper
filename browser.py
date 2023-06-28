@@ -6,6 +6,9 @@ import json
 from urllib.parse import urlparse, parse_qs
 import time
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+
 class Browser:
 
     def __init__(self, chromedriverPath, browsermobPath, harfilePath, cookies=None):
@@ -19,7 +22,7 @@ class Browser:
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--proxy-server={0}".format(url))
         
-        self.driver = webdriver.Chrome(chromedriverPath,chrome_options =chrome_options)
+        self.driver = webdriver.Chrome(executable_path=chromedriverPath, options = chrome_options)
         if cookies:
             print("Loading cookies from "+str(cookies))
             with open(cookies, 'r') as cookieFile:

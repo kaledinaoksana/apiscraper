@@ -27,12 +27,12 @@ class APIFinder:
 			exit(1)
 		if self.removeParams and self.url is None:
 			print("WARNING: Must have Internet connection to remove unneeded parameters")
-
+		chrome_path = "/Users/oksana_kaledina/.wdm/drivers/chromedriver/mac_arm64/114.0.5735.90/chromedriver"
 		#Scan for all APIs
 		if self.url:
 			os.makedirs(self.harDirectory,exist_ok=True)
 			self.deleteExistingHars()
-			self.browser = Browser("chromedriver/chromedriver", "browsermob-proxy-2.1.4/bin/browsermob-proxy", self.harDirectory, cookies=self.cookies)
+			self.browser = Browser(chromedriverPath = chrome_path, browsermobPath  = "browsermob-proxy-2.1.4/bin/browsermob-proxy", harfilePath=self.harDirectory, cookies=self.cookies)
 			if self.searchString is not None:
 				print("Searching URL "+self.url+" for string "+self.searchString)
 			#Move recursively through the site
